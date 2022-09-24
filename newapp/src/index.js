@@ -11,8 +11,8 @@ const newMessage = 'Современные технологии достигли
 
 root.render(
   <React.StrictMode>
-  <App name={myName}  />
-  <Message message={newMessage} />
+    <App name={myName}  />
+    <Message />
   </React.StrictMode>,
 )
 
