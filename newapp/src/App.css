@@ -10,17 +10,20 @@
 }
 
 .App-bg {
+  display: flex;
   background-color: #282c34;
   min-height: 100vh;
   list-style: none;
 }
 
+.App-main {
+  width: 80%;
+}
+
 .App-desc {
-  color: white;
-  margin: 0 auto;
-  max-width: 1200px;
   width: 100%;
   padding: 0;
+  list-style: none;
 }
 
 .Message-text {
@@ -31,7 +34,6 @@
 
 .form {
   box-sizing: border-box;
-  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   padding: 20px;
