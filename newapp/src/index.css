@@ -11,3 +11,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App-header {
+  background-color: #282c34;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-bg {
+  display: flex;
+  background-color: #282c34;
+  min-height: 100vh;
+  list-style: none;
+}
+
+.App-main {
+  width: 100%;
+}
+
+.App-desc {
+  width: 100%;
+  padding: 0;
+  list-style: none;
+}
+
+.Message-text {
+  padding: 5px;
+  background: white;
+  color: black;
+}
+
+.form {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgb(145, 176, 182);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form button {
+  max-width: 160px;
+}
+
+.App-menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 360px;
+}

@@ -1,25 +1,55 @@
-import './App.css';
+import '../index.css';
 import React, { useState, useEffect, useRef } from 'react';
 import {Box, Button, TextField, Card, Typography, CardContent, List, ListItem} from '@mui/material';  
-import ChatList from './ChatList';
 
-function Message() {
+function Messages() {
         
-    const [message, setMessage] = useState([]);
+    const [message, setMessage] = useState([
+        {
+            id: 1,
+            text: 'Привет!',
+            author: 'Sergey',
+        },
+        {
+            id: 2,
+            text: 'Добрый вечер!',
+            author: 'Vlad',
+        },
+        {
+            id: 3,
+            text: 'Привет!',
+            author: 'Roman',
+        },
+        {
+            id: 4,
+            text: 'Прив!',
+            author: 'Roman',
+        },
+        {
+            id: 5,
+            text: 'Хоу!',
+            author: 'Petr',
+        },
+        {
+            id: 6,
+            text: 'Хай!',
+            author: 'Roman',
+        }
+    ]);
 
-    const [lastUser, setLastUser] = useState('');
+    // const [lastUser, setLastUser] = useState('');
 
     const [name, setName] = useState(['']);
     const [text, setText] = useState(['']);
 
     const ref = useRef(null);
     
-    useEffect(() => {
-        let timeout = setTimeout(() => answer(), 1500);
-        console.log(ref);
-        focusInput(ref.current.children[1].children[0]);
-        return () => clearTimeout(timeout)
-    }, [lastUser])
+    // useEffect(() => {
+    //     let timeout = setTimeout(() => answer(), 1500);
+    //     console.log(ref);
+    //     focusInput(ref.current.children[1].children[0]);
+    //     return () => clearTimeout(timeout)
+    // }, [lastUser])
 
     const nameChanger = (event) => {
         setName(event.target.value)
@@ -42,22 +72,22 @@ function Message() {
         });
         setName('');
         setText('');
-        setLastUser(name);
+        // setLastUser(name);
     }
 
-    const answer = () => {
-        if (message.length > 0) {
-            let lastId = message.length;
-            const item = {
-                id: lastId + 1,
-                text: 'Ваше сообщение принято к рассмотрению, ожидайте ответа оператора.',
-                author: 'Android',
-            }
-            setMessage((prevMessage) => {
-                return [item, ...prevMessage]
-            });
-        }
-    }
+    // const answer = () => {
+    //     if (message.length > 0) {
+    //         let lastId = message.length;
+    //         const item = {
+    //             id: lastId + 1,
+    //             text: 'Ваше сообщение принято к рассмотрению, ожидайте ответа оператора.',
+    //             author: 'Android',
+    //         }
+    //         setMessage((prevMessage) => {
+    //             return [item, ...prevMessage]
+    //         });
+    //     }
+    // }
 
     function focusInput(field) {
         if (field) {
@@ -67,7 +97,6 @@ function Message() {
 
     return (
         <div className="App-bg">
-            <ChatList />
             <div className='App-main'>
                 <Box component="form" className='form' onSubmit={formSubmit}>
                     <TextField id="name" ref={ref} variant="outlined" autoFocus label="Имя пользователя" required value={name} onChange={nameChanger}/>
@@ -93,4 +122,4 @@ function Message() {
         </div>
     );
 }
-export default Message;
+export default Messages;

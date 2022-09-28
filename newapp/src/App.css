@@ -46,3 +46,10 @@
 .form button {
   max-width: 160px;
 }
+
+.App-menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 360px;
+}
