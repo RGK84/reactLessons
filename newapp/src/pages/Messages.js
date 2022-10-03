@@ -1,39 +1,47 @@
 import '../index.css';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import {Box, Button, TextField, Card, Typography, CardContent, List, ListItem} from '@mui/material';  
+import {ThemeContext} from '../context';
+import { useParams } from 'react-router-dom';
 
 function Messages() {
         
-    const [message, setMessage] = useState([
+    const [messages, setMessages] = useState([
         {
             id: 1,
             text: 'Привет!',
             author: 'Sergey',
+            chatId: 1
         },
         {
             id: 2,
             text: 'Добрый вечер!',
             author: 'Vlad',
+            chatId: 2
         },
         {
             id: 3,
             text: 'Привет!',
             author: 'Roman',
+            chatId: 1
         },
         {
             id: 4,
             text: 'Прив!',
             author: 'Roman',
+            chatId: 2
         },
         {
             id: 5,
             text: 'Хоу!',
             author: 'Petr',
+            chatId: 3
         },
         {
             id: 6,
             text: 'Хай!',
             author: 'Roman',
+            chatId: 3
         }
     ]);
 
@@ -61,14 +69,14 @@ function Messages() {
     const formSubmit = (event) => {
         event.preventDefault();
         ref.current.focus();
-        let lastId = message.length;
+        let lastId = messages.length;
         const item = {
             id: lastId + 1,
             text: text,
             author: name,
         }
-        setMessage((prevMessage) => {
-            return [item, ...prevMessage]
+        setMessages((prevMessages) => {
+            return [item, ...prevMessages]
         });
         setName('');
         setText('');
@@ -89,37 +97,46 @@ function Messages() {
     //     }
     // }
 
-    function focusInput(field) {
-        if (field) {
-            field.focus();
-        }
-    }
+    // function focusInput(field) {
+    //     if (field) {
+    //         field.focus();
+    //     }
+    // }
+
+    const { theme, toggleTheme } = useContext(ThemeContext);
+
+    const {id} = useParams();
+    const filteredMessages = messages.filter((message) => {
+        return message.chatId == id;
+    })
 
     return (
-        <div className="App-bg">
-            <div className='App-main'>
-                <Box component="form" className='form' onSubmit={formSubmit}>
-                    <TextField id="name" ref={ref} variant="outlined" autoFocus label="Имя пользователя" required value={name} onChange={nameChanger}/>
-                    <TextField id="message" variant="outlined" label="Текст сообщения" required value={text} onChange={textChanger}/>
-                    <Button variant="contained" type="submit">Отправить</Button>
-                </Box>
+        <>
+            <div className="App-bg">
+                <div className='App-main'>
+                    <Box component="form" className='form' onSubmit={formSubmit}>
+                        <TextField id="name" ref={ref} variant="outlined" autoFocus label="Имя пользователя" required value={name} onChange={nameChanger}/>
+                        <TextField id="message" variant="outlined" label="Текст сообщения" required value={text} onChange={textChanger}/>
+                        <Button variant="contained" type="submit">Отправить</Button>
+                    </Box>
 
-                <List className="App-desc">
-                    {message.map((item) => {
-                        return(
-                        <ListItem key={item.id}>
-                            <Card variant="outlined">
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">{ item.author }</Typography>
-                                    <Typography variant="body2">{ item.text }</Typography>
-                                </CardContent>
-                            </Card>
-                        </ListItem>
+                    <List className="App-desc" style={{background: theme.background, color: theme.color}}>
+                        {filteredMessages.map((item) => {
+                            return(
+                            <ListItem key={item.id}>
+                                <Card variant="outlined">
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">{ item.author }</Typography>
+                                        <Typography variant="body2">{ item.text }</Typography>
+                                    </CardContent>
+                                </Card>
+                            </ListItem>
+                            )}
                         )}
-                    )}
-                </List>
+                    </List>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 export default Messages;
