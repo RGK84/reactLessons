@@ -12,7 +12,7 @@ import Header from './components/Header';
 function App(props) {
     const [currentTheme, setCurrentTheme] = useState(themes.light);
     const toggleTheme = () => {
-        setCurrentTheme(prevState => prevState == themes.light ? themes.dark : themes.light);
+        setCurrentTheme(prevState => prevState === themes.light ? themes.dark : themes.light);
     }
 
 return (

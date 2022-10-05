@@ -1,23 +1,11 @@
-import React, { useState} from 'react';
-import {List, ListItem, IconButton, ListItemText} from '@mui/material';  
-import {Comment} from '@mui/icons-material';
-import {Link} from "react-router-dom";
+import { List, ListItem, IconButton, ListItemText } from '@mui/material';  
+import { Comment } from '@mui/icons-material';
+import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { chatsSelector } from '../redux/reducers/chatsSelector';
 
 function ChatsPage() {
-    const [chats, setChats] = useState([
-        {
-            id: 1,
-            name: 'Sergey'
-        },
-        {
-            id: 2,
-            name: 'Vlad'
-        },
-        {
-            id: 3,
-            name: 'Petr'
-        }
-    ]);
+    const chats = useSelector(chatsSelector);
 
     return (
         <List sx={{ width: '20%', bgcolor: 'background.paper' }}>
