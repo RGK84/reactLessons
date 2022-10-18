@@ -63,7 +63,7 @@ function Messages() {
                 author: 'Android',
                 chatId: +id
             }
-            dispatch({ type: 'add', payload: item });
+            dispatch({ type: 'add', payload: item, meta: {delayMs: 3000} });
         }
     }
     

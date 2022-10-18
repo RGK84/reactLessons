@@ -4,14 +4,14 @@ import { messageReducer } from "./reducers/messageReducer";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
-// const logger = store => next => action => {
-//     const delay = action?.meta?.delayMs;
-//     if (!delay) return next(action);
+const logger = store => next => action => {
+    const delay = action?.meta?.delayMs;
+    if (!delay) return next(action);
 
-//     const timeout = setTimeout( () => next(action), delay);
+    const timeout = setTimeout( () => next(action), delay);
 
-//     return () => clearTimeout(timeout);
-// }
+    return () => clearTimeout(timeout);
+}
 
 const config = {
     key: 'root',
@@ -23,7 +23,7 @@ const reducer = combineReducers({
     messages: messageReducer
 });
 
-const persistedReducer = persistReducer(config, reducer);
+const persistedReducer = persistReducer(config, reducer, applyMiddleware(logger));
 
 export const store = createStore(persistedReducer);
 export const persistor = persistStore(store);
