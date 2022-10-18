@@ -23,7 +23,7 @@ const reducer = combineReducers({
     messages: messageReducer
 });
 
-const persistedReducer = persistReducer(config, reducer, applyMiddleware(logger));
+const persistedReducer = persistReducer(config, reducer);
 
-export const store = createStore(persistedReducer);
+export const store = createStore(persistedReducer, applyMiddleware(logger));
 export const persistor = persistStore(store);
